@@ -16,8 +16,8 @@
 ActiveRecord::Base.configurations[:development] = {
   :adapter   => 'postgresql',
   :database  => 'new_padrino1_development',
-  :username  => 'root',
-  :password  => '',
+  :username  => 'postgres',
+  :password  => 'z0000000',
   :host      => 'localhost',
   :port      => 5432
 
@@ -36,8 +36,8 @@ ActiveRecord::Base.configurations[:production] = {
 ActiveRecord::Base.configurations[:test] = {
   :adapter   => 'postgresql',
   :database  => 'new_padrino1_test',
-  :username  => 'root',
-  :password  => '',
+  :username  => 'postgres',
+  :password  => 'z0000000',
   :host      => 'localhost',
   :port      => 5432
 
