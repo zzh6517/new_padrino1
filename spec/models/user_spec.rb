@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pact_helper'
 
 RSpec.describe User do
     

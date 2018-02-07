@@ -12,7 +12,7 @@
       "request": {
         "method": "get",
         "path": "/provider.json",
-        "query": "valid_date=Wed,%2007%20Feb%202018%2006:37:20%20GMT"
+        "query": "valid_date=Wed,%2007%20Feb%202018%2007:09:41%20GMT"
       },
       "response": {
         "status": 200,
