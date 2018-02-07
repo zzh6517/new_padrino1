@@ -15,7 +15,7 @@ source 'https://rubygems.org'
 
 # Project requirements
 gem 'rake'
-
+gem 'pact', '~> 1.20', '>= 1.20.1'
 # Component requirements
 gem 'sass'
 gem 'erubi', '~> 1.6'
