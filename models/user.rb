@@ -13,6 +13,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def load_producer_json2
+    url = URI::encode('http://localhost:3000/provider.string?valid_date=' + 'string123')
+    puts url
+    response = HTTParty.get(url)
+    if response.success?
+      response.body
+    end
+  end
+
   def process_data
     data = load_producer_json
     ap data
@@ -21,6 +30,10 @@ class User < ActiveRecord::Base
     puts value
     puts date
     [value, date]
+  end
+
+  def process_data2
+    data = load_producer_json2
   end
 
 end

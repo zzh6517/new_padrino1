@@ -10,13 +10,14 @@ RSpec.describe User do
       "count" => 1000
     }
   end
-  let(:response) { double('Response', :success? => true, :body => json_data.to_json) }
+  #let(:response) { double('Response', :success? => true, :body => json_data.to_json) }
 
-  it 'can process the json payload from the producer' do
-    allow(HTTParty).to receive_messages(:get => response)
-    expect(subject.process_data).to eql([10, Time.parse(json_data['date'])])
+    let(:str_data) do
+    "string123"
   end
+  let(:response) { double('Response', :success? => true, :body => str_data.to_s) }
 
+=begin
   describe 'pact with provider', :pact => true do
 
     let(:date) { Time.now.httpdate }
@@ -36,9 +37,30 @@ RSpec.describe User do
               body: json_data
             )
     end
+=end
+
+  describe 'pact with provider', :pact => true do
+
+
+
+    before do
+      my_provider.
+        given("provider is in a sane state").
+          upon_receiving("a request for provider string").
+            with(
+                method: :get,
+                path: '/provider.string',
+                query: URI::encode('valid_date=' + str_data)
+            ).
+            will_respond_with(
+              status: 200,
+              headers: { 'Content-Type' => 'text/html;charset=utf-8' },
+              body: str_data
+            )
+    end
 
     it 'can process the json payload from the provider' do
-      expect(subject.process_data).to eql([10, Time.parse(json_data['date'])])
+      expect(subject.process_data2).to eql(str_data)
     end
 
   end
