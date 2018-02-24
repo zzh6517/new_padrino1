@@ -44,7 +44,7 @@ RSpec.describe User do
 
 
     before do
-      my_provider.
+      new_padrino2.
         given("provider is in a sane state").
           upon_receiving("a request for provider string").
             with(
