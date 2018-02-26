@@ -10,22 +10,22 @@ RSpec.describe User do
       "count" => 1000
     }
   end
-  #let(:response) { double('Response', :success? => true, :body => json_data.to_json) }
+  let(:response) { double('Response', :success? => true, :body => json_data.to_json) }
 
-    let(:str_data) do
-    "string123"
+  let(:str_data) do
+    "Happy New Year"
   end
   let(:response) { double('Response', :success? => true, :body => str_data.to_s) }
 
-=begin
+
   describe 'pact with provider', :pact => true do
 
     let(:date) { Time.now.httpdate }
 
     before do
-      my_provider.
-        given("provider is in a sane state").
-          upon_receiving("a request for provider json").
+      new_padrino2.
+        given("返回json数据的服务提供者").
+          upon_receiving("服务提供者已准备好接收一个获取json数据的http请求").
             with(
                 method: :get,
                 path: '/provider.json',
@@ -33,20 +33,22 @@ RSpec.describe User do
             ).
             will_respond_with(
               status: 200,
-              headers: { 'Content-Type' => 'application/json;charset=utf-8' },
+              headers: { 'Content-Type' => 'application/json' },
               body: json_data
             )
     end
-=end
+
+    it '期望能够从服务提供者处得到处理后的json数据' do
+      expect(subject.process_data).to eql([10, Time.parse(json_data['date'])])
+    end
+  end
 
   describe 'pact with provider', :pact => true do
 
-
-
     before do
       new_padrino2.
-        given("provider is in a sane state").
-          upon_receiving("a request for provider string").
+        given("返回string数据的服务提供者").
+          upon_receiving("服务提供者已准备好接收一个获取string数据的http请求").
             with(
                 method: :get,
                 path: '/provider.string',
@@ -59,7 +61,7 @@ RSpec.describe User do
             )
     end
 
-    it 'can process the json payload from the provider' do
+    it '期望能够从服务提供者处得到处理后的string数据' do
       expect(subject.process_data2).to eql(str_data)
     end
 

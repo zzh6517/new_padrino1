@@ -5,7 +5,7 @@ require 'json'
 class User < ActiveRecord::Base
 
   def load_producer_json
-    url = URI::encode('http://localhost:1234/provider.json?valid_date=' + Time.now.httpdate)
+    url = URI::encode('http://localhost:3000/provider.json?valid_date=' + Time.now.httpdate)
     puts url
     response = HTTParty.get(url)
     if response.success?
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def load_producer_json2
-    url = URI::encode('http://localhost:3000/provider.string?valid_date=' + 'string123')
+    url = URI::encode('http://localhost:3000/provider.string?valid_date=' + 'Happy New Year')
     puts url
     response = HTTParty.get(url)
     if response.success?
