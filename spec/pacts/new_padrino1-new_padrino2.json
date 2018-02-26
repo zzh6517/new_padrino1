@@ -7,12 +7,27 @@
   },
   "interactions": [
     {
-      "description": "服务提供者已准备好接收一个获取json数据的http请求",
-      "providerState": "返回json数据的服务提供者",
+      "description": "new_padrino2接受一个获取string数据的http请求",
+      "providerState": "new_padrino2将返回string数据",
+      "request": {
+        "method": "get",
+        "path": "/provider.string"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/html;charset=utf-8"
+        },
+        "body": "新年快乐"
+      }
+    },
+    {
+      "description": "new_padrino2接受一个获取json数据的http请求",
+      "providerState": "new_padrino2将返回json数据",
       "request": {
         "method": "get",
         "path": "/provider.json",
-        "query": "valid_date=Mon,%2026%20Feb%202018%2005:36:24%20GMT"
+        "query": "city=%E4%B8%8A%E6%B5%B7"
       },
       "response": {
         "status": 200,
@@ -20,26 +35,10 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "test": "NO",
-          "date": "2013-08-16T15:31:20+10:00",
-          "count": 1000
+          "城市": "上海",
+          "天气": "晴",
+          "温度": "20度"
         }
-      }
-    },
-    {
-      "description": "服务提供者已准备好接收一个获取string数据的http请求",
-      "providerState": "返回string数据的服务提供者",
-      "request": {
-        "method": "get",
-        "path": "/provider.string",
-        "query": "valid_date=Happy%20New%20Year"
-      },
-      "response": {
-        "status": 200,
-        "headers": {
-          "Content-Type": "text/html;charset=utf-8"
-        },
-        "body": "Happy New Year"
       }
     }
   ],
